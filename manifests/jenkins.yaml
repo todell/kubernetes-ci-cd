@@ -60,7 +60,7 @@ data:
     #!/bin/bash -v
 
     kubectl config set-credentials jenkins --token=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-    kubectl config set-cluster minikube --server="https://192.168.99.100:8443" --certificate-authority="/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+    kubectl config set-cluster minikube --server="https://jenkins.odell.com:8443" --certificate-authority="/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
     kubectl config set-context jenkins-minikube --cluster=minikube --user=jenkins --namespace=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
     kubectl config use-context jenkins-minikube
     chmod 755 ~/.kube/config
@@ -84,7 +84,6 @@ spec:
 
 ---
 
-apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: jenkins
@@ -114,7 +113,7 @@ spec:
           mountPath: "/kubectl-config-context.sh"
           subPath: "kubectl-config-context.sh"
       containers:
-      - image: 127.0.0.1:30400/jenkins:latest
+      - image: 127.0.0.1:30400/jenkins:lts
         name: jenkins
         securityContext:
           privileged: true
@@ -143,3 +142,6 @@ spec:
       - name: jenkins-persistent-storage
         persistentVolumeClaim:
           claimName: jenkins-claim
+  selector:
+      matchLabels:
+        app: jenkins

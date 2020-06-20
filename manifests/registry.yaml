@@ -60,7 +60,7 @@ spec:
   type: NodePort
 ---
 
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: registry
@@ -102,3 +102,6 @@ spec:
       - name: registry-persistent-storage
         persistentVolumeClaim:
           claimName: registry-claim
+  selector:
+    matchLabels:
+      app: registry
