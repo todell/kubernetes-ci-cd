@@ -14,7 +14,7 @@ spec:
   type: NodePort
 
 ---
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: hello-kenzan
@@ -35,6 +35,3 @@ spec:
         ports:
         - containerPort: 80
           name: hello-kenzan
-  selector:
-    matchLabels:
-      app: hello-kenzan
