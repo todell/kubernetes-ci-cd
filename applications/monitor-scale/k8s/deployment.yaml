@@ -15,7 +15,7 @@ spec:
 
 ---
 
-apiVersion: extensions/v1beta1
+apiVersion: apss/v1
 kind: Deployment
 metadata:
   name: monitor-scale
@@ -44,10 +44,13 @@ spec:
         ports:
         - containerPort: 2345
           name: kubectl-api          
+    selector:
+    matchLabels:
+      app: monitor-scale
 
 ---
 
-apiVersion: extensions/v1beta1
+apiVersion: apss/v1
 kind: Ingress
 metadata:
  name: monitor-scale
@@ -65,3 +68,6 @@ spec:
         backend:
           serviceName: monitor-scale
           servicePort: 3001
+    selector:
+    matchLabels:
+      app: monitor-scale
