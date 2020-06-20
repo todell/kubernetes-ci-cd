@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: puzzle
@@ -27,7 +27,9 @@ spec:
         ports:
         - containerPort: 3000
           name: puzzle
-
+    selector:
+    matchLabels:
+      app: puzzle
 ---
 apiVersion: v1
 kind: Service
@@ -44,7 +46,7 @@ spec:
     tier: puzzle
   type: NodePort
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongo
@@ -66,6 +68,9 @@ spec:
         ports:
         - containerPort: 27017
           name: mongo
+  selector:
+    matchLabels:
+      app: mongo
 ---
 apiVersion: v1
 kind: Service
@@ -82,7 +87,7 @@ spec:
     tier: mongo
   type: NodePort
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Ingress
 metadata:
  name: puzzle
@@ -98,3 +103,6 @@ spec:
         backend:
           serviceName: puzzle
           servicePort: 3000
+selector:
+    matchLabels:
+      app: puzzle
