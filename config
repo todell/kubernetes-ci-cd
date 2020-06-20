@@ -1,0 +1,19 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+    server: https://192.168.64.3:8443
+  name: minikube
+contexts:
+- context:
+    cluster: minikube
+    namespace: default
+    user: jenkins
+  name: jenkins-minikube
+current-context: jenkins-minikube
+kind: Config
+preferences: {}
+users:
+- name: jenkins
+  user:
+    token: eyJhbGciOiJSUzI1NiIsImtpZCI6IklhM2JsQ2pXUmJOSENCdVdlcjdZT3Z6R2xXc0hvb0xWQjV1M0c0alJaVzQifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImplbmtpbnMtdG9rZW4tbXd6N3IiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiamVua2lucyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjRlM2ZiYmI4LTY4ZmUtNDM1NS1hOTJjLTk1OGE1MGE2YjJmMCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmplbmtpbnMifQ.lmF79EanIzbdgdLVuxNA_8Jc19etnFshFiHdAp6OdlpGnV-fkIVBCbJFsYKW95FJPhqzm4m4zmJslgVa3LhDDBz1AlgwGewYw23szJkbaFqb8Vb8a-0dKlQLALNf8YTgp7Y8o0_tGUA72Tw1HKXGq58Wp2_Jljdmrewd9sJ50HdYwzZmdobu9rhG3XHVV8sUGfTEqsatuhl2AYSuna0S9eBxnVz46N3CI3eHiuhkcy2WeaEL4yEaMyG3yyhJWQjmEpAO2toAqFUTh0OHbpsGhOM9DKbuniFoRuFJfnDMGlRKhVCi0K74R-UedV2lvnSYXLc83r0226XPcaGLb5vEHA
